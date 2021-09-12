@@ -81,7 +81,7 @@ class Collection extends Api
      * @title 合成抽奖码
      * @desc 五个福灯可集成一个兑换码
      * @author wyc
-     * @url /api/Collection/setmobile
+     * @url /api/Collection/synthesis
      * @method POST
      * @tag 合成 抽奖码
      * @return name:code type:number desc:状态码
@@ -97,7 +97,7 @@ class Collection extends Api
         $follow = $this->isfollow($uid);
         if (!$follow) {
             // 未关注公众号
-            return json(['code' => 0, 'msg' => '请先关注公众号！']);
+            return json(['code' => 400, 'msg' => '请先关注公众号！']);
         }
     	// 获取所有福灯数量
     	// 获取当前用户的灯的个数
@@ -191,12 +191,11 @@ class Collection extends Api
         return $this->fetch('code');
     }
 
-    // 相同的三个福灯换取一个其他的福灯
     /**
-     * @title 获取我的抽奖码列表
+     * @title 相同的三个福灯换取一个其他的福灯
      * @desc 获取我所合成的所有的抽奖码
      * @author wyc
-     * @url /api/Collection/setexchange
+     * @url /api/Collection/swaplamp
      * @method POST
      * @tag 合成 抽奖码
      * @param name:swap type:string require:1 desc:三个灯笼(亨通灯=>hengtong,安康灯=>ankang,如意灯=>wishful,顺心灯=>agreeable,兴旺灯=>flourishing)

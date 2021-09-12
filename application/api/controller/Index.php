@@ -64,9 +64,10 @@ class Index extends Api
             ->where(array('uid'=>$uid,'status'=>1))
             ->count();
         $data = json_encode($list);
-        $this->assign('data',$data);
+        return json(['code'=>1,'msg'=>'获取成功！','list'=>$list,'data'=>$data]);
+        /*$this->assign('data',$data);
         $this->assign('list',$list);
-        return $this->fetch('collection/lamp');
+        return $this->fetch('collection/lamp');*/
     }
 
     /**
@@ -108,7 +109,14 @@ class Index extends Api
         $this->assign('uid',$uid);
         return $this->fetch();
     }
-
-
+    public function clause(){
+        return $this->fetch();
+    }
+    public function rule(){
+        return $this->fetch();
+    }
+    public function lamp(){
+        return $this->fetch('collection/lamp');
+    }
 
 }

@@ -26,7 +26,7 @@
                     <img src="/static/api/images/index_lamp3@2x.png" alt="">
                 </div>
             </div>
-            <div class="indexClause">
+            <div class="indexClause"  @click="toUrl(4)">
                 <img src="/static/api/images/index_clause.png">
             </div>
         </div>
@@ -40,7 +40,7 @@
             methods:{
                 toUrl(t){
                     let url;
-                    t==1?url='{:url("index/getlampnum")}':t==2?url='{:url("format")}':url='{:url("getgrade")}'
+                    t==1?url='{:url("lamp")}':t==2?url='{:url("format")}':t==3?url='{:url("getgrade")}':url='{:url("clause")}'
                     window.location.href = url;
                 }
             },            

@@ -1,5 +1,5 @@
-@font-face{/* font-properties */ font-family: '思源宋体'; src: url('./SourceHanSerifCN-Bold.otf');}
-@font-face{/* font-properties */ font-family: '楷体z'; src: url('./KaiTi.ttf');}
+/* @font-face{font-family: '思源宋体'; src: url('./SourceHanSerifCN-Bold.otf');}
+@font-face{font-family: '楷体z'; src: url('./KaiTi.ttf');} */
 .box{width: 100%; max-width: 1024px; min-height: 100vh; margin: 0 auto; position: relative;}
 .box .bg{width: 100%;display: block;}
 .globalCont{position: absolute; width: 100%; min-height: 100%; top: 0;}
@@ -45,7 +45,7 @@
 .headImgBox{background-color: rgba(255, 255, 255, 0.3); width: 2.1rem; height: 2.1rem; position: absolute; top: 10.7rem; left: 50%; transform: translateX(-50%); box-sizing: border-box; border-radius: 50%; overflow: hidden;}
 .headImg{width: 1.85rem; height: 1.85rem; border: 1px solid #FFD766; border-radius: 50%;}
 .gzhImg{width: 1.7rem;position:absolute;top:16.68rem;left: 0.4rem;z-index: 99;}
-
+.shareBtn{margin: 0 auto;margin-top: 4.6rem!important;}
 /* 合成灯 */
 .lampBox{background-color: #feeab8;}
 .inCode{width: 1.85rem; height: 0.68rem; background: #9C1C1B; border: 0.02rem solid #E4A034; border-radius: 0.34rem 0rem 0rem 0.34rem; position: absolute; right: 0; top: .43rem; font-size: 0.32rem; color: #FFFBD1; font-family: '思源宋体'; letter-spacing: 3px; padding-bottom: 0.05rem;}
@@ -74,6 +74,8 @@
 .gradeBox .headBox .line.line0{width: 0;}
 .gradeBox .headBox .line.line100{width: 100%;}
 .gradeBox .headBox .gift{width: 1.08rem; position: relative; z-index: 9;}
+/* 协议 */
+.clauseBox{background: #fffbeb!important;font-size: .28rem;text-align: justify;}
 /* 弹出层 */
 .popup{width: 100%; height: 100%; position: fixed; left: 0; top: 0; background-color: rgba(0, 0, 0, 0.8);backdrop-filter: blur(5px); }
 .popup_cont{width: 6.2rem; position: absolute; left: 50%; transform: translate(-50%); top: 2.28rem;}

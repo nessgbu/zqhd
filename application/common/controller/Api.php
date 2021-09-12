@@ -77,7 +77,9 @@ class Api extends Base
 
     // 判断是否用户是否登录
     protected function islogin() {
-    	// 当前登录用户
+        // 获取邀请人id
+        $pid = input('param.id');
+        // 当前登录用户
 		$uid = session("userid");
         if($uid && Db::name('users')->where(array('id'=>$uid))->find()){
 			// $this->userinfo = Db::name('users')->where(array('id'=>$uid))->find();
@@ -103,6 +105,7 @@ class Api extends Base
 					$useradd['province'] = $userinfo->province;
 					$useradd['city'] = $userinfo->city;
 					$useradd['headimg'] = $userinfo->headimgurl;
+                    $useradd['pid'] = $pid;
 					$useradd['last_time'] = time();
 					$useradd['update_time'] = time();
 					$useradd['create_time'] = time();

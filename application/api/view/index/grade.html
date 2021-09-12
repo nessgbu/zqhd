@@ -48,14 +48,25 @@
                     <img class="gift" src="/static/api/images/gift.png" alt="">
                 {/if}
                 <div class="line_bg">
+                    {if condition="!$grade"}
+                    <div class="line line0"></div>
+                    {/if}
+                    {if condition="$grade == 1"}
+                    <div class="line line0"></div>
+                    {/if}
+                    {if condition="$grade == 2"}
+                    <div class="line line50"></div>
+                    {/if}
+                    {if condition="$grade == 3"}
                     <div class="line line100"></div>
+                    {/if}
                 </div>
                
             </div>
-            <div class="gradeRule">
+            <div class="gradeRule" @click="toHelp()">
                 <img src="/static/api/images/grade_gz.png" alt="">
             </div>
-            <div class="gradeBtn flex">
+            <div class="gradeBtn flex" @click="toUrl(1)">
                 去集灯
             </div>
         </div>
@@ -66,7 +77,17 @@
         var app = new Vue({
             el: '#app',
             data: {},
-            methods:{},            
+            methods:{
+                toHelp(){
+                    let url='{:url("index/rule")}';
+                    window.location.href = url;
+                },
+                toUrl(t){
+                    let url;
+                    t==1?url='{:url("index/lamp")}':''
+                    window.location.href = url;
+                }
+            },            
         })
     </script>
 </body>
