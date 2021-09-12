@@ -45,7 +45,7 @@ class Api extends Base
         //分享给好友的简述              
         $shareAppDesc = "您收到一份来自 索能达中国建筑与配电事业部 发来的中秋祝福！";
         //分享的图片地址
-        $baseimgurl = 'http://'.$name.'/static/api/images/formatItem1.png';
+        $baseimgurl = 'https://'.$name.'/static/api/images/formatItem1.png';
         //分享的访问地址
         $baseurl = url('api/index/index','','html',true);
 
