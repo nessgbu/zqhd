@@ -70,13 +70,17 @@ class Api extends Base
     {
         //移除HTML标签
         $this->request->filter('trim,strip_tags,htmlspecialchars');
-        /*$config = config('xcxconf');
-        if (time() < strtotime($config['creatime']) || time() > strtotime($config['endtime'])) {
-            return $this->fetch('api/index/rule');
+        $config = config('xcxconf');
+        if ($this->request->action() == 'rule') {
+
         }else{
-            // 检测是否登录状态
-            $this->islogin();
-        }*/
+            if (time() < strtotime($config['creatime']) || time() > strtotime($config['endtime'])) {
+                $this->redirect('api/index/rule');exit;
+            }else{
+                // 检测是否登录状态
+                $this->islogin();
+            }
+        }
     }
 
     // 判断是否用户是否登录
