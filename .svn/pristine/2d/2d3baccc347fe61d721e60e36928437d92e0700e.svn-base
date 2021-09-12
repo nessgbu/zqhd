@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>月圆·灯影</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app" class="box">
+        <img class="bg" :src="'./images/'+bgImg+'c_bg.jpg'">
+        <div class="globalCont">
+            <div class="shareCont flex">
+                <div v-html="list[Text-1]"></div>
+            </div>
+            <div class="headImgBox flex">
+                <img class="headImg" src="https://pic1.zhimg.com/80/v2-0fd6011820d22b5430ddeb0e93588ec1_qhd.jpg" alt="">
+            </div>
+        </div>
+        <img class="gzhImg" src="./images/ewm.jpg">
+    </div>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                bgImg: 1,
+                Text: 1,
+                list: [
+                    '<p>一轮明月，思念无限﹔</p><p>一块月饼，合家团圆﹔</p><p>一声关怀，心心相牵﹔</p><p>一份相牵，情谊相连﹔</p><p>一个拥抱，感恩言谢﹔</p><p>一路走来，你在身边﹔</p><p>一起努力，美好明天﹔</p><p>一度中秋，幸福美满！</p>',
+                    '<p>玉宇无尘，银河泻影</p><p>月色横空，花荫满径</p><p>秋夜温馨，空弥甜蜜</p><p>光华浸福，中秋良景</p><p>合家团圆，诸事顺利</p>',
+                    '<p>桂花开在梢上，尽兴欣赏﹔</p><p>流星划过头顶，随心许愿﹔</p><p>歌声响在耳边，倾耳聆听﹔</p><p>祝福发到身边，遥送心意﹔</p><p>佳节来到眼前，喜腾欢庆！</p>',
+                    '<p>一轮明月，撒下万缕思念</p><p>一袭桂香，醉人幸福身边</p><p>一柄灯烛，映红团聚笑脸</p><p>一封月饼，品尝生活香甜</p><p>一道祝愿，数不尽好明天</p><p>明月伴君行，月光如我心</p>'
+                ]
+            },
+            methods: {
+
+            },
+            created: function () {
+                let bg = getQueryString('bg');
+                let t = getQueryString('t');
+                bg ? this.bgImg = bg : '';
+                t ? this.Text = t : '';
+            },
+        })
+        wx.config({
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: res.appId, // 必填，公众号的唯一标识
+            timestamp: res.timestamp, // 必填，生成签名的时间戳
+            nonceStr: res.nonceStr, // 必填，生成签名的随机串
+            signature: signature, // 必填，签名，见附录1
+            jsApiList: [
+                'updateAppMessageShareData'
+            ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+        var u = $(".url").val();
+        //u = "http://h5bcxg.jctmj.cn/home/index/code/Mcode/15w87f63P61n70M/user_id/25";
+        //u = encodeURIComponent(htmlUrl+$(".url").val());
+        wx.ready(function () {
+            //分享给朋友
+            wx.updateAppMessageShareData({
+                title: '胖橙送你全网优惠券', // 分享标题
+                desc: '吃喝玩乐买，样样都省钱', // 分享描述
+                link: u, // 分享链接
+                imgUrl: 'http://h5bcxg.jctmj.cn/public/static/home/img/image.jpeg',
+                success: function (res) {
+                    console.log(res);
+                },
+                cancel: function () {
+                    console.log(res);
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+            wx.error(function (res) {
+                alert("errorMSG:" + res);
+            });
+        });
+    </script>
+</body>
+
+</html>

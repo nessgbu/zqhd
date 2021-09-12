@@ -1,0 +1,64 @@
+{extend name="admin@index_layout"/}
+{block name="main"}
+<div class="layui-card">
+    <div class="layui-card-header">添加人员</div>
+    <div class="layui-card-body">
+        <form class="layui-form" method="post">
+            <div class="layui-form-item layui-form-text">
+                <label>头像</label>
+                <div class="layui-form-field-label">
+                    <div class="js-upload-image">
+                        {php}echo \util\Form::images('image'){/php}
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label>名称</label>
+                <div class="w300">
+                    <input type="text" name="name" autocomplete="off" placeholder="名称" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label>性别</label>
+                <div class="w300">
+                    <input type="radio" name="sex" value="0" checked title="男" lay-filter="type">
+                    <input type="radio" name="sex" value="1" title="女" lay-filter="type">
+                </div>
+            </div>
+            <div class="layui-form-item web_seo">
+                <label>描述</label>
+                <div class="w300">
+                    <textarea name="description" placeholder="描述" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label>排序</label>
+                <div class="w300">
+                    <input type="number" name="listorder" autocomplete="off" placeholder="排序" class="layui-input" value="100">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label>状态</label>
+                <div class="w300">
+                    <input type="radio" name="status" value="1" checked title="已通过" lay-filter="status">
+                    <input type="radio" name="status" value="0" title="未通过" lay-filter="status">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div>
+                    <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+layui.use('yznForm', function() {
+    var yznForm = layui.yznForm;
+    yznForm.listen();
+});
+</script>
+{/block}

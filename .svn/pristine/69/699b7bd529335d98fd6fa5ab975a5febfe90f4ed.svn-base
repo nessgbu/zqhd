@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中秋集灯</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body class="indexBox">
+    <div class="box">
+        <img class="bg" src="./images/index_bg.png">
+        <div class="indexCont">
+            <div class="indexMenu">
+                <div class="menuItem">
+                    <img src="./images/index_lamp1@2x.png" alt="">
+                </div>
+                <div class="menuItem">
+                    <img src="./images/index_lamp2@2x.png" alt="">
+                </div>
+                <div class="menuItem">
+                    <img src="./images/index_lamp3@2x.png" alt="">
+                </div>
+            </div>
+            <div class="indexClause">
+                <img src="./images/index_clause.png">
+            </div>
+        </div>
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
+
+</body>
+
+</html>

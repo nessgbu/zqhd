@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>月圆·灯影</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/vue.min.js"></script>
+</head>
+
+<body class="lampBox">
+    <div id="app" class="box">
+        <img class="bg" src="./images/lamp_bg.png">
+        <div class="globalCont">
+            <div class="inCode flex">
+                兑奖码
+            </div>
+            <div class="lampCont">
+                <div class="flex_rse">
+                    <div class="lampItem">
+                        <img src="./images/享通灯.png" alt="">
+                        <div class="num flex">
+                            <div class="t">
+                                12
+                            </div>
+                        </div>
+                        <div class="text">
+                            享通灯
+                        </div>
+                        <div class="barter flex">
+                            兑换
+                        </div>
+                    </div>
+                    <div class="lampItem">
+                        <img src="./images/安康灯.png" alt="">
+                        <div class="num flex">
+                            <div class="t">
+                                12
+                            </div>
+                        </div>
+                        <div class="text">
+                            安康灯
+                        </div>
+                        <div class="barter flex">
+                            兑换
+                        </div>
+                    </div>
+                </div>
+                <div class="flex_rsb">
+                    <div class="lampItem">
+                        <img src="./images/如意灯.png" alt="">
+                        <div class="num flex">
+                            <div class="t">
+                                12
+                            </div>
+                        </div>
+                        <div class="text">
+                            如意灯
+                        </div>
+                        <div class="barter flex">
+                            兑换
+                        </div>
+                    </div>
+                    <div class="lampItem">
+                        <img src="./images/顺心灯.png" alt="">
+                        <div class="num flex">
+                            <div class="t">
+                                12
+                            </div>
+                        </div>
+                        <div class="text">
+                            如意灯
+                        </div>
+                        <div class="barter flex">
+                            兑换
+                        </div>
+                    </div>
+                    <div class="lampItem">
+                        <img src="./images/兴旺灯.png" alt="">
+                        <div class="num num_gray flex">
+                            <div class="t">
+                                0
+                            </div>
+                        </div>
+                        <div class="text">
+                            兴旺灯
+                        </div>
+                        <div class="barter barter_gray flex">
+                            兑换
+                        </div>
+                    </div>
+                </div>
+                <div class="flex_rse btnBox">
+                    <div class="btn btn_join flex">
+                        合成
+                    </div>
+                    <div class="btn btn_help flex">
+                        说明
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="popup">
+            <div class="popup_cont">
+                <img class="colse" src="./images/popup_close.png"> -->
+                <!-- 选灯 -->
+                <!-- <template>
+                    <img class="bg" src="./images/popup_bg1.png">
+                    <div class="selLamp flex_rsb">
+                        <div class="selLampItem flex on">安康灯</div>
+                        <div class="selLampItem flex">安康灯</div>
+                        <div class="selLampItem flex">安康灯</div>
+                        <div class="selLampItem flex">安康灯</div>
+                    </div>
+                </template> -->
+                <!-- 未关注公众号 -->
+                <!-- <template>
+                    <img class="bg" src="./images/popup_ewm.png">
+                </template> -->
+                <!-- 获取兑奖码 -->
+                <!-- <template>
+                    <img class="bg" src="./images/popup_code.png">
+                    <div class="popupCode">
+                        123457ADG1
+                    </div>
+                    <div class="popupCodeBtn"></div>
+                </template> -->
+                <!-- <template>
+                    <img class="bg" src="./images/popup_code_tel.png">
+                    <div class="popupCode popupCode2">
+                        123457ADG1
+                    </div>
+                    <div class="popupTel flex">
+                        <input type="number" placeholder="请输入您的联系方式">
+                    </div>
+                    <div class="popupCodeBtn popupCodeBtn2"></div>
+                </template> -->
+            <!-- </div> -->
+        </div>
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+        })
+    </script>
+</body>
+
+</html>

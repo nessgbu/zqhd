@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赏灯旺运</title>
+    <link rel="stylesheet" href="/static/api/css/reset.css">
+    <link rel="stylesheet" href="/static/api/css/index.css">
+    <script src="/static/api/js/vue.min.js"></script>
+</head>
+
+<body class="lampBox">
+    <div id="app" class="box">
+        <img class="bg" src="/static/api/images/lamp_bg.png">
+        <div class="globalCont">
+            <div class="lampCont">
+                <div class="flex_rse">
+                    <div class="lampItem">
+                        <img src="/static/api/images/享通灯.png" alt="">
+                        <div class="num flex {if condition='!$list["hengtong"]'} num_gray {/if}">
+                            <div class="t">
+                                {$list['hengtong']}
+                            </div>
+                        </div>
+                        <div class="text">
+                            享通灯
+                        </div>
+                        <div class="barter flex {if condition='!$list["hengtong"]'} barter_gray {/if}">
+                             兑换
+                        </div>
+                    </div>
+                    <div class="lampItem">
+                        <img src="/static/api/images/安康灯.png" alt="">
+                        <div class="num flex {if condition='!$list["ankang"]'} num_gray {/if}">
+                            <div class="t">
+                                {$list['ankang']}
+                            </div>
+                        </div>
+                        <div class="text">
+                            安康灯
+                        </div>
+                        <div class="barter flex {if condition='!$list["ankang"]'} barter_gray {/if}">
+                            兑换
+                       </div>
+                    </div>
+                </div>
+                <div class="flex_rsb">
+                    <div class="lampItem">
+                        <img src="/static/api/images/如意灯.png" alt="">
+                        <div class="num flex {if condition='!$list["wishful"]'} num_gray {/if}">
+                            <div class="t">
+                                {$list['wishful']}
+                            </div>
+                        </div>
+                        <div class="text">
+                            如意灯
+                        </div>
+                        <div class="barter flex {if condition='!$list["wishful"]'} barter_gray {/if}">
+                            兑换
+                       </div>
+                    </div>
+                    <div class="lampItem">
+                        <img src="/static/api/images/顺心灯.png" alt="">
+                        <div class="num flex {if condition='!$list["agreeable"]'} num_gray {/if}">
+                            <div class="t">
+                                {$list['agreeable']}
+                            </div>
+                        </div>
+                        <div class="text">
+                            顺心灯
+                        </div>
+                        <div class="barter flex {if condition='!$list["agreeable"]'} barter_gray {/if}">
+                            兑换
+                       </div>
+                    </div>
+                    <div class="lampItem">
+                        <img src="/static/api/images/兴旺灯.png" alt="">
+                        <div class="num flex {if condition='!$list["flourishing"]'} num_gray {/if}">
+                            <div class="t">
+                                {$list['flourishing']}
+                            </div>
+                        </div>
+                        <div class="text">
+                            兴旺灯
+                        </div>
+                        <div class="barter flex {if condition='!$list["flourishing"]'} barter_gray {/if}">
+                            兑换
+                       </div>
+                    </div>
+                </div>
+                <div class="flex_rsa btnBox">
+                    <div class="btn_join flex">
+                        合成
+                    </div>
+                    <div class="btn_help flex">
+                        说明
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/api/js/jquery.min.js"></script>
+    <script src="/static/api/js/index.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+/* @font-face{ont-family: '思源宋体'; src: url('./SourceHanSerifCN-Bold.otf');}
+@font-face{font-family: '楷体z'; src: url('./KaiTi.ttf');}*/
+.box{width: 100%; max-width: 1024px; min-height: 100vh; margin: 0 auto; position: relative;}
+.box .bg{width: 100%;display: block;}
+.globalCont{position: absolute; width: 100%; min-height: 100%; top: 0;}
+.flex{display: flex; align-items: center; justify-content: center; flex-wrap: wrap;}
+.flex_rc{display: flex; justify-content: center; flex-wrap: wrap;}
+.flex_rsa{display: flex; justify-content: space-around; flex-wrap: wrap;}
+.flex_rsb{display: flex; justify-content: space-between; flex-wrap: wrap;}
+.flex_rse{display: flex; justify-content: space-evenly; flex-wrap: wrap;}
+
+/* 首页 */
+.indexBox{background-color: #000f95;}
+.indexCont{position: absolute; top: 62%;}
+.indexMenu{width: 100%; display: flex; justify-content: space-evenly;}
+.menuItem{width: 22%; height: auto;}
+.menuItem img{width: 100%;}
+.indexClause{width: 100%; margin-top: 6%; text-align: center;}
+.indexClause img{width: 80%; max-width: 600px;}
+/* 选择模板页 */
+.formatBox{background-color: #000e88;}
+.formatCont{width: 100%; margin-top:3.16rem;padding-bottom: 0.5rem;}
+.titleBox{width: 5.34rem; height: 1.09rem; background: url(../images/title.png)no-repeat; background-size: contain; text-align: center; line-height: 1rem; margin: 0 auto; position: relative; z-index: 2;}
+.titleBox .text{font-family: '思源宋体'; color: #FFFBD1; font-size: .36rem; letter-spacing: 2px; font-weight: normal;}
+.format .outerBox{width: 6.61rem; margin: 0 auto; background: #000972; border: 3px solid #FFD766; padding: 0.1rem; margin-top: -0.48rem;}
+.format .withinBox{width: 100%; background: url(../images/withinBox_bg.png); border: 2px solid #FFD766; padding: 0.72rem .47rem;}
+.format .formatItem{width: 2.62rem; height: 2.62rem; background: url(../images/formatItem_blue.png)no-repeat; background-size: contain;}
+.format .formatItem.red{background: url(../images/formatItem_red.png)no-repeat;background-size: contain;}
+.format .formatItem img{width: 2.31rem; height: 2.31rem;}
+.format .formatItem_text img{width: 1.87rem; height:1.87rem;}
+.format .formatItem:nth-child(1){margin-bottom: .42rem;}
+.formatBtn{width: 5.75rem; height: 0.82rem; background: linear-gradient(-5deg, #FAB272, #FFDFC0); border-radius: 0.1rem; color: #010666; font-size: 0.32rem; font-family: '思源宋体'; margin: 0.47rem auto 0;}
+
+/* 兑换码 */
+.code_empty{width: 4.3rem;margin-top: -0.3rem;}
+.code_emptyText{font-size: 0.26rem; font-family: '思源宋体'; font-weight: 400; color: #FFFBD1; letter-spacing: 3px; margin-top: -1rem; margin-bottom: 1rem;}
+.codeList{padding: 0.5rem 0 1rem;}
+.code{width: 5.12rem; height: 0.89rem; background: rgba(254, 251, 234, 0.2); font-size: 0.32rem; font-family: '思源宋体'; font-weight: bold; color: #fff; letter-spacing: 4px; margin-top: 0.35rem;}
+
+/* 活动规则 */
+.ruleCont{width: 6.61rem;}
+
+/* 分享页 */
+.shareCont{font-size: 0.41rem; font-family: '楷体z'; font-weight: 400; color: #FFFFFF; margin-top: 5.51rem; line-height: 1.5; height: 4.8rem;}
+.headImgBox{background-color: rgba(255, 255, 255, 0.3); width: 2.1rem; height: 2.1rem; position: absolute; top: 10.7rem; left: 50%; transform: translateX(-50%); box-sizing: border-box; border-radius: 50%; overflow: hidden;}
+.headImg{width: 1.85rem; height: 1.85rem; border: 1px solid #FFD766; border-radius: 50%;}
+.gzhImg{width: 1.7rem;position:absolute;top:16.68rem;left: 0.4rem;z-index: 99;}
+
+/* 合成灯 */
+.lampBox{background-color: #feeab8;}
+.inCode{width: 1.85rem; height: 0.68rem; background: #9C1C1B; border: 0.02rem solid #E4A034; border-radius: 0.34rem 0rem 0rem 0.34rem; position: absolute; right: 0; top: .43rem; font-size: 0.32rem; color: #FFFBD1; font-family: '思源宋体'; letter-spacing: 3px; padding-bottom: 0.05rem;}
+.lampCont{width: 100%; margin-top:2.29rem;padding-bottom: 0.5rem;}
+.lampItem{width: 2.39rem; position: relative;}
+.lampItem img{width: 100%;}
+.lampItem .text{position: absolute; font-size: 0.23rem; font-family: '思源宋体'; color: #FFD766; width: 1em; right: .35rem; top: 2rem;}
+.lampItem .num{width: .3rem; height: .3rem; background: linear-gradient(-5deg, #CF1A0B, #F15814); border-radius: 50%; position: absolute; right:0.37rem; top: 0.41rem; padding-right: 1px; flex-wrap: nowrap;}
+.lampItem .num .t{font-size:0.6rem; transform: scale(0.35); font-family: '思源宋体'; color: #FFFFFF;}
+.lampItem .num.num_gray{background: linear-gradient(-5deg, #FFFFFF, #535353);}
+.lampItem .barter{width: 1.6rem; height: 0.52rem; background: linear-gradient(-5deg, #FAB272, #FFDFC0); border-radius: 0.1rem; margin: 0 auto; margin-top: -0.3rem; font-family: '思源宋体'; font-size: 0.26rem; color: #010666; letter-spacing: 2px;}
+.lampItem .barter_gray{background: linear-gradient(-5deg, #FFFFFF, #919191); color: #282828;}
+.lampCont .btnBox{margin-top: .9rem;}
+.lampCont .btn{height: 0.82rem; border-radius: 0.1rem; font-family: '思源宋体'; font-size: 0.32rem; color: #FFFBD1; letter-spacing: 0.05rem;}
+.lampCont .btn_join{width: 4.88rem;  background: linear-gradient(1deg, #9C1C1B, #FA5137);}
+.lampCont .btn_help{width: 1.58rem;background: linear-gradient(2deg, #EF500D, #F4A922);}
+
+/* 进度页 */
+.gradeBox{background-color: #030d7c;}
+.gradeBtn{width: 6.6rem; height: 0.82rem; background: linear-gradient(1deg, #9C1C1B, #FA5137); border-radius: 0.1rem; color: #FFFBD1; font-family: '思源宋体'; font-size: 0.32rem; letter-spacing: 3px; position: absolute; left: 50%; transform: translate(-50%); top: 10.81rem;}
+.gradeRule{width: 0.84rem; right:0.39rem; top: 2.17rem; position: absolute;}
+.gradeRule img{width: 100%;}
+.gradeBox .headBox{margin: 0.33rem 0.51rem; position: relative;}
+.gradeBox .headBox .line_bg{position: absolute; height: 0.05rem; border: 1px solid rgba(255,255,255,0.2); background-color: rgba(255,255,255,0.2); border-radius: 6px; width: 90%; left: 50%; top: 50%; transform: translate(-50%); z-index: 0;}
+.gradeBox .headBox .line{width: 50%; height: 0.05rem; background: linear-gradient(-90deg, #FFBD2F, #F64F2A);}
+.gradeBox .headBox .line.line0{width: 0;}
+.gradeBox .headBox .line.line100{width: 100%;}
+.gradeBox .headBox .gift{width: 1.08rem; position: relative; z-index: 9;}
+/* 弹出层 */
+.popup{width: 100%; height: 100%; position: fixed; left: 0; top: 0; background-color: rgba(0, 0, 0, 0.8);backdrop-filter: blur(5px); }
+.popup_cont{width: 6.2rem; position: absolute; left: 50%; transform: translate(-50%); top: 2.28rem;}
+.popup_cont .bg{width: 100%;}
+.popup_cont .colse{width: .5rem; height: .5rem; position: absolute; top: 2.08rem; right: 0.37rem;}
+.selLamp{position: absolute; width: 3.35rem; top: 4.76rem; left: 50%; transform: translate(-50%);}
+.selLampItem{width: 1.58rem; height: 0.59rem; background: #0F7475; border: 0.01rem solid #FACD89; border-radius: 0.11rem; font-family: "思源宋体"; font-size: 0.24rem; color: #fff; margin-bottom: 0.16rem;}
+.selLampItem.on{background: #FFDD91; border: 1px solid #FFECD0; color: #DD2314;}
+.popupCode{position: absolute; font-size: 0.39rem; color: #A70906; font-family: '黑体'; top:5.54rem; left: 50%; transform: translate(-50%); letter-spacing: 2px; font-weight: bold;}
+.popupCode2{top:5.35rem;}
+.popupTel{width: 3.34rem; height: 0.65rem; background: #0F7475; border: 1px solid #FACD89; border-radius: 0.11rem; position:absolute; top: 7.25rem; font-size: 0.3rem; left: 50.5%; transform: translate(-50%);}
+.popupTel input{height: 0.5rem; background: none; border: none; color: #fff; font-size: 0.28rem; padding:0 10px; box-sizing: border-box;}
+.popupTel input::-webkit-input-placeholder{color: rgba(255, 255, 255, 0.3); font-size: 0.25rem;}
+.popupCodeBtn{/* background: red; */ width: 1.5rem; height: 1.5rem; position: absolute; top: 6.7rem; border-radius: 50%; left: 52%; transform: translate(-50%);}
+.popupCodeBtn2{top: 9rem;}

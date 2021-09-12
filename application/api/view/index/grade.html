@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>万家灯火</title>
+    <link rel="stylesheet" href="/static/api/css/reset.css">
+    <link rel="stylesheet" href="/static/api/css/index.css">
+	<script src="/static/api/js/vue.min.js"></script>
+</head>
+
+<body class="gradeBox">
+    <div id="app" class="box">
+        {if condition="!$grade"}
+            <img class="bg" src="/static/api/images/grade1.jpg">
+        {/if}
+        {if condition="$grade == 1"}
+            <img class="bg" src="/static/api/images/grade2.jpg">
+        {/if}
+        {if condition="$grade == 2"}
+            <img class="bg" src="/static/api/images/grade3.jpg">
+        {/if}
+        {if condition="$grade == 3"}
+            <img class="bg" src="/static/api/images/grade4.jpg">
+        {/if}
+        <div class="globalCont">
+            <div class="headBox flex_rsb">
+                {if condition="!$grade"}
+                    <img class="gift" src="/static/api/images/gift_gray.png" alt="">
+                    <img class="gift" src="/static/api/images/gift_gray.png" alt="">
+                    <img class="gift" src="/static/api/images/gift_gray.png" alt="">
+                {/if}
+                {if condition="$grade == 1"}
+                    <img class="gift" src="/static/api/images/gift.png" alt="">
+                    <img class="gift" src="/static/api/images/gift_gray.png" alt="">
+                    <img class="gift" src="/static/api/images/gift_gray.png" alt="">
+                {/if}
+                {if condition="$grade == 2"}
+                    <img class="gift" src="/static/api/images/gift.png" alt="">
+                    <img class="gift" src="/static/api/images/gift.png" alt="">
+                    <img class="gift" src="/static/api/images/gift_gray.png" alt="">
+                {/if}
+                {if condition="$grade == 3"}
+                    <img class="gift" src="/static/api/images/gift.png" alt="">
+                    <img class="gift" src="/static/api/images/gift.png" alt="">
+                    <img class="gift" src="/static/api/images/gift.png" alt="">
+                {/if}
+                <div class="line_bg">
+                    <div class="line line100"></div>
+                </div>
+               
+            </div>
+            <div class="gradeRule">
+                <img src="/static/api/images/grade_gz.png" alt="">
+            </div>
+            <div class="gradeBtn flex">
+                去集灯
+            </div>
+        </div>
+    </div>
+    <script src="/static/api/js/jquery.min.js"></script>
+    <script src="/static/api/js/index.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {},
+            methods:{},            
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>送福集灯</title>
+    <link rel="stylesheet" href="/static/api/css/reset.css">
+    <link rel="stylesheet" href="/static/api/css/index.css">
+	<script src="/static/api/js/vue.min.js"></script>
+</head>
+
+<body class="formatBox">
+    <div id="app" class="box ">
+        <img class="bg" src="/static/api/images/format_bg.png">
+        <div class="globalCont">
+            <div class="formatCont">
+                <div class="titleBox">
+                    <div class="text">请选择心愿灯封样式</div>
+                </div>
+                <!-- 选择版式 -->
+                <div class="format">
+                    <div class="outerBox flex">
+                        <div class="withinBox flex_rsb">
+                            <div :class="['formatItem flex',itemON==i?'red':'']" v-for="i in 4" :key="i" @click="selFormat(i)">
+								<img :src="'/static/api/images/formatItem'+i+'.png'" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="formatBtn flex" @click="toUrl()">
+                    下一步
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/api/js/jquery.min.js"></script>
+    <script src="/static/api/js/index.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                itemON:1,  //选中的模板
+            },
+            methods:{
+                selFormat(i){
+                    this.itemON=i;
+                },
+                toUrl(){
+                    let url='{:url("formattext")}?bg='+this.itemON;
+                    window.location.href = url;
+                }
+            },            
+        })
+    </script>
+</body>
+
+</html>

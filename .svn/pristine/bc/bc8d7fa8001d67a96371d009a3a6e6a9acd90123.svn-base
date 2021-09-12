@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中秋集灯</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+	<script src="./js/vue.min.js"></script>
+</head>
+
+<body class="formatBox">
+    <div id="app" class="box">
+        <img class="bg" src="./images/format_bg.png">
+        <div class="globalCont">
+            <div class="formatCont">
+                <div class="titleBox">
+                    <div class="text">请选择心愿灯芯样式</div>
+                </div>
+                <!-- 选择版式 -->
+                <div class="format">
+                    <div class="outerBox flex">
+                        <div class="withinBox flex_rsb">
+                            <div :class="['formatItem formatItem_text flex',itemON==i?'red':'']" v-for="i in 4" :key="i" @click="selFormat(i)">
+								<img :src="'./images/formatItem_t'+i+'.png'" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="formatBtn flex">
+                    下一步
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                itemON:0,  //选中的模板
+            },
+            methods:{
+                selFormat(i){
+                    this.itemON=i;
+                }
+            },            
+        })
+    </script>
+</body>
+
+</html>
