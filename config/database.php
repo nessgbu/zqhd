@@ -23,7 +23,7 @@ return [
     // 用户名
     'username'        => 'zqhd_jctmj_cn',
     // 密码
-    'password'        => 'zqhd_jctmj_cn',
+    'password'        => 'nyEknRkkrnDHFf7W',
     // 端口
     'hostport'        => '',
     // 连接dsn
