@@ -88,6 +88,7 @@ function wxGetAccessTokenByCgiBin($appid,$secret)
 	}else{
 		$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$secret";
 		$jsonRes = curlGet($url);
+		writeLog($jsonRes);
 		$res = json_decode($jsonRes);
 		$newData['access_token'] = $res->access_token;
 		$newData['expire_time'] = time()+7000;
