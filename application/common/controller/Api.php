@@ -70,9 +70,13 @@ class Api extends Base
     {
         //移除HTML标签
         $this->request->filter('trim,strip_tags,htmlspecialchars');
-
-        // 检测是否登录状态
-        $this->islogin();
+        /*$config = config('xcxconf');
+        if (time() < strtotime($config['creatime']) || time() > strtotime($config['endtime'])) {
+            return $this->fetch('api/index/rule');
+        }else{
+            // 检测是否登录状态
+            $this->islogin();
+        }*/
     }
 
     // 判断是否用户是否登录
@@ -151,13 +155,27 @@ class Api extends Base
             // 模板消息
             if ($tid) {
                 $pusers = Db::name('users')->where(array('id'=>$pid))->find();
-                $uusers = Db::name('users')->where(array('id'=>$userid))->find();
                 $data['open_id'] = $pusers['openid'];
-                $data['type'] = "0csgfxlT-oBhxXXl02RuynrfUob6-nZg97A4vkH1lhM";
+                $data['type'] = "co7FVkvGlSALpVHnJuIltYhFreNaJcl5CBLFJGKTr50";
                 $data['truckid'] = url("api/index/index",'','html',true);
+                if ($table == 'hengtong') {
+                    $name = '亨通';
+                }elseif ($table == 'ankang') {
+                    $name = '安康';
+                }elseif ($table == 'wishful') {
+                    $name = '如意';
+                }elseif ($table == 'agreeable') {
+                    $name = '顺心';
+                }elseif ($table == 'flourishing') {
+                    $name = '兴旺';
+                }
+                $first = '恭喜您成功邀请一名集福新用户，获得一盏'.$name.'福灯';
                 $data['msg'] = array(
-                    'name' => array('value' => $pusers['nickname'],'color' => '#000000'),
-                    'remark' => array('value' => $uusers['nickname'].'祝您获得'.$table.'灯笼','color' => '#000000'),
+                    'first' => array('value' => $first, 'color' => '#000000'),
+                    'keyword1' => array('value' => "“灯暖月圆”中秋集福灯活动",'color' => '#000000'),
+                    'keyword2' => array('value' => $name.'福灯','color' => '#000000'),
+                    'keyword3' => array('value' => date('Y/m/d'),'color' => '#000000'),
+                    'remark' => array('value' => '立即领取>','color' => '#000000'),
                 );
                 writeLog($data);
                 sendTemplateMessage($data);

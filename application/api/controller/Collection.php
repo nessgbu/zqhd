@@ -91,6 +91,13 @@ class Collection extends Api
      */
     public function synthesis()
     {
+        /*$config = config('xcxconf');
+        if (time() < $config['updatime']) {
+            return json(['code' => 0, 'msg' => '该功能暂未开启！']);
+        }
+        if (time() > $config['endtime']) {
+            return json(['code' => 0, 'msg' => '该活动已结束！']);
+        }*/
     	// 获取当前用户
     	$uid = session('userid');
         // 判断是否关注公众号
@@ -205,6 +212,13 @@ class Collection extends Api
      */
     public function swaplamp()
     {
+        /*$config = config('xcxconf');
+        if (time() < $config['updatime'] || ) {
+            return json(['code' => 0, 'msg' => '该功能暂未开启！']);
+        }
+        if (time() > $config['endtime']) {
+            return json(['code' => 0, 'msg' => '该活动已结束！']);
+        }*/
         // 获取当前的用户
         $uid = session('userid');
         // 获取三个灯笼

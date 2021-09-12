@@ -104,3 +104,6 @@ ALTER TABLE `yzn_ankang` ADD `status` int(1) DEFAULT 1 COMMENT '状态';
 ALTER TABLE `yzn_wishful` ADD `status` int(1) DEFAULT 1 COMMENT '状态';
 ALTER TABLE `yzn_agreeable` ADD `status` int(1) DEFAULT 1 COMMENT '状态';
 ALTER TABLE `yzn_flourishing` ADD `status` int(1) DEFAULT 1 COMMENT '状态';
+
+ALTER TABLE `yzn_users` ADD `pid` int(10) DEFAULT 0 COMMENT '邀请用户id';
+

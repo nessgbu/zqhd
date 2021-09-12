@@ -37,9 +37,9 @@
 
 /* 活动规则 */
 .ruleCont{width: 6.61rem;}
-
+.ruleCont img{width: 100%;height: auto;}
 /* 分享页 */
-.shareCont{font-size: 0.41rem; font-weight: 400; color: #FFFFFF; margin-top: 5.51rem; line-height: 1.5; height: 4.8rem;}
+.shareCont{font-family: 'KaiTi'; font-size: 0.41rem; font-weight: 400; color: #FFFFFF; margin-top: 5.51rem; line-height: 1.5; height: 4.8rem;}
 .headImgBox{background-color: rgba(255, 255, 255, 0.3); width: 2.1rem; height: 2.1rem; position: absolute; top: 10.7rem; left: 50%; transform: translateX(-50%); box-sizing: border-box; border-radius: 50%; overflow: hidden;}
 .headImg{width: 1.85rem; height: 1.85rem; border: 1px solid #FFD766; border-radius: 50%;}
 .gzhImg{width: 1.7rem;position:absolute;top:16.68rem;left: 0.4rem;z-index: 99;}
