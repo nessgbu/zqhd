@@ -1,3 +1,6 @@
 # Miscellaneous
 .svn/
 runtime/
+access_token.php
+cgi_bin_access_token.php
+jsapi_ticket.php
