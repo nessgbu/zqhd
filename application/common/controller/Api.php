@@ -107,7 +107,7 @@ class Api extends Base
 					$sql->where(array("openid"=>$userinfo->openid))->update($users);
 				}else{
 					$useradd['openid'] = $userinfo->openid;
-					$useradd['nickname'] = (string)$userinfo->nickname;
+					$useradd['nickname'] = 'nickname';
 					$useradd['sex'] = $userinfo->sex;
 					$useradd['country'] = $userinfo->country;
 					$useradd['province'] = $userinfo->province;
