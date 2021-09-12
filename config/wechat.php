@@ -120,6 +120,7 @@ function sendTemplateMessage($data)
 	);
 	$jsonRes = curlPost($url,json_encode($post));
 	$res = json_decode($jsonRes);
+	writeLog($res);
 	// var_dump($res);
 }
 function TMJ_wxGetUserInfo()

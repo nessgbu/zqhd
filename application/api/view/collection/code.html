@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="/static/api/css/index.css">
 	<script src="/static/api/js/vue.min.js"></script>
 </head>
-
+{include file='api@homebtn' /}
 <body class="formatBox">
     <div id="app" class="box">
         <img class="bg" src="/static/api/images/format_bg.png">
         <div class="globalCont">
             <div class="formatCont">
                 <div class="titleBox">
-                    <div class="text">我的兑奖码</div>
+                    <div class="text">我的抽奖码</div>
                 </div>
                 <!-- 选择版式 -->
                 <div class="format">
@@ -37,14 +37,14 @@
                                 <template>
                                     <img class="code_empty" src="/static/api/images/code.gif" alt="">
                                     <div class="code_emptyText">
-                                        暂无兑奖码，快去集灯抽奖吧
+                                        暂无抽奖码，快去集灯抽奖吧
                                     </div>
                                 </template>
                             {/if}
                         </div>
                     </div>
                 </div>
-                <div class="formatBtn flex">
+                <div class="formatBtn flex" @click="toUrl">
                     去集灯
                 </div>
             </div>
@@ -60,7 +60,10 @@
                 // list:list
             },
             methods:{
-                
+                toUrl(){
+                    let url='{:url("index/lamp")}';
+                    window.location.href = url;
+                }
             },            
         })
     </script>

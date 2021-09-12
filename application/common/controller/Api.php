@@ -32,6 +32,34 @@ class Api extends Base
         $this->request = $request;
         // 控制器初始化
         $this->initialize();
+        $this->shareinfo();
+    }
+
+    public function shareinfo()
+    {
+        $name = $_SERVER['HTTP_HOST'];
+        //分享到朋友圈的标题
+        $shareTimelineTitle = "中秋送福集灯";   
+        //分享给好友的标题
+        $shareAppTitle = "中秋送福集灯";
+        //分享给好友的简述              
+        $shareAppDesc = "您收到一份来自 索能达中国建筑与配电事业部 发来的中秋祝福！";
+        //分享的图片地址
+        $baseimgurl = 'http://'.$name.'/static/api/images/formatItem1.png';
+        //分享的访问地址
+        $baseurl = url('api/index/index','','html',true);
+
+        require_once "../vendor/wxJsSdk/jssdk.php";
+        $config = config('xcxconf');
+        $jssdk = new \JSSDK($config['appid'], $config['secret']);
+        $signPackage = $jssdk->GetSignPackage();
+
+        $this->assign('shareTimelineTitle',$shareTimelineTitle);
+        $this->assign('shareAppTitle',$shareAppTitle);
+        $this->assign('shareAppDesc',$shareAppDesc);
+        $this->assign('baseimgurl',$baseimgurl);
+        $this->assign('baseurl',$baseurl);
+        $this->assign('signPackage',$signPackage);
     }
 
     /**
@@ -51,9 +79,8 @@ class Api extends Base
     protected function islogin() {
     	// 当前登录用户
 		$uid = session("userid");
-        // $uid = 1;
-		if($uid){
-			$this->userinfo = Db::name('users')->where(array('id'=>$uid))->find();
+        if($uid && Db::name('users')->where(array('id'=>$uid))->find()){
+			// $this->userinfo = Db::name('users')->where(array('id'=>$uid))->find();
 			session("userid",$uid);
 		}else{
 			$userinfo = wxGetUserInfo();
@@ -85,27 +112,18 @@ class Api extends Base
 					}
 				}
 				$this->userinfo = $userdata;
-				// 分享活动用户
-    			// $pid = input('get.uid');
-                $userid = session('userid');
-                if ($pid != $userid) {
-                    // $pid = 1;
-                    // 获取灯笼
-                    $this->getlamp($pid);
-                }
 			}
 		}
 	}
 
 	// 分享之后获得福灯
-    public function getlamp($pid)
+    public function getlamp($userid,$pid)
     {
-    	$uid = session('userid');
-        $hengtong = Db::name('hengtong')->where(array('uid'=>$uid,'sharedid'=>$pid))->find();
-        $ankang = Db::name('ankang')->where(array('uid'=>$uid,'sharedid'=>$pid))->find();
-        $wishful = Db::name('wishful')->where(array('uid'=>$uid,'sharedid'=>$pid))->find();
-        $agreeable = Db::name('agreeable')->where(array('uid'=>$uid,'sharedid'=>$pid))->find();
-        $flourishing = Db::name('flourishing')->where(array('uid'=>$uid,'sharedid'=>$pid))->find();
+        $hengtong = Db::name('hengtong')->where(array('uid'=>$pid,'sharedid'=>$userid))->find();
+        $ankang = Db::name('ankang')->where(array('uid'=>$pid,'sharedid'=>$userid))->find();
+        $wishful = Db::name('wishful')->where(array('uid'=>$pid,'sharedid'=>$userid))->find();
+        $agreeable = Db::name('agreeable')->where(array('uid'=>$pid,'sharedid'=>$userid))->find();
+        $flourishing = Db::name('flourishing')->where(array('uid'=>$pid,'sharedid'=>$userid))->find();
         // 若是之前没有通过改用户获取到福灯，则随机获取福灯
         if (!$hengtong && !$ankang && !$wishful && !$agreeable && !$flourishing) {
             // 亨通灯7%        安康灯20%        如意灯3%        顺心灯30%        兴旺灯40%
@@ -121,22 +139,27 @@ class Api extends Base
                 }
             }
             // 将获取到的福灯存入数据库
-            $tables['uid'] = $uid;
+            $tables['uid'] = $pid;
             $tables['time'] = time();
-            $tables['sharedid'] = $pid;
+            $tables['sharedid'] = $userid;
             $tables['create_time'] = time();
             $tables['update_time'] = time();
-            Db::name($table)->insertGetId($tables);
-            // 提醒pid
-            $pusers = Db::name('users')->where(array('id'=>$pid))->find();
-	        $data['open_id'] = $pusers['openid'];
-	        $data['type'] = "0csgfxlT-oBhxXXl02RuynrfUob6-nZg97A4vkH1lhM";
-	        $data['truckid'] = "http://zqhd.jctmj.cn/api/index/index.html";
-	        $data['msg'] = array(
-	        	'name' => array('value' => $pusers['nickname'],'color' => '#000000'),
-	        	'remark' => array('value' => $table,'color' => '#000000'),
-	        );
-            sendTemplateMessage($data);
+            $tid = Db::name($table)->insertGetId($tables);
+            // 模板消息
+            if ($tid) {
+                $pusers = Db::name('users')->where(array('id'=>$pid))->find();
+                $uusers = Db::name('users')->where(array('id'=>$userid))->find();
+                $data['open_id'] = $pusers['openid'];
+                $data['type'] = "0csgfxlT-oBhxXXl02RuynrfUob6-nZg97A4vkH1lhM";
+                $data['truckid'] = url("api/index/index",'','html',true);
+                $data['msg'] = array(
+                    'name' => array('value' => $pusers['nickname'],'color' => '#000000'),
+                    'remark' => array('value' => $uusers['nickname'].'祝您获得'.$table.'灯笼','color' => '#000000'),
+                );
+                writeLog($data);
+                sendTemplateMessage($data);
+            }
         }
     }
+
 }

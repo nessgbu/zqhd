@@ -85,7 +85,7 @@ CREATE TABLE `yzn_exchange` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `uid` int(11) DEFAULT NULL COMMENT '用户id',
   `time` int(11) DEFAULT NULL COMMENT '兑换时间',
-  `code` varchar(10) DEFAULT NULL COMMENT '兑换码',
+  `code` varchar(20) DEFAULT NULL COMMENT '兑换码',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`),
@@ -98,3 +98,9 @@ ALTER TABLE `yzn_ankang` ADD `sharedid` int(11) DEFAULT NULL COMMENT '灯来源i
 ALTER TABLE `yzn_wishful` ADD `sharedid` int(11) DEFAULT NULL COMMENT '灯来源id';
 ALTER TABLE `yzn_agreeable` ADD `sharedid` int(11) DEFAULT NULL COMMENT '灯来源id';
 ALTER TABLE `yzn_flourishing` ADD `sharedid` int(11) DEFAULT NULL COMMENT '灯来源id';
+
+ALTER TABLE `yzn_hengtong` ADD `status` int(1) DEFAULT 1 COMMENT '状态';
+ALTER TABLE `yzn_ankang` ADD `status` int(1) DEFAULT 1 COMMENT '状态';
+ALTER TABLE `yzn_wishful` ADD `status` int(1) DEFAULT 1 COMMENT '状态';
+ALTER TABLE `yzn_agreeable` ADD `status` int(1) DEFAULT 1 COMMENT '状态';
+ALTER TABLE `yzn_flourishing` ADD `status` int(1) DEFAULT 1 COMMENT '状态';

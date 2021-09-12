@@ -133,6 +133,9 @@ class Collection extends Api
             if ($hengtongdel && $ankangdel && $wishfuldel && $agreeabledel && $flourishingdel) {
                 // 合成成功之后，产生随机兑换码
                 $code['code'] = $this->randconvert();
+                while (Db::name('exchange')->where(array('code'=>$code['code']))->find()) {
+                    $code['code'] = $this->randconvert();
+                }
                 $code['uid'] = $uid;
                 $code['time'] = time();
                 $code['create_time'] = time();

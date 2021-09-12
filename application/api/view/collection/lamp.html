@@ -10,104 +10,245 @@
     <link rel="stylesheet" href="/static/api/css/index.css">
     <script src="/static/api/js/vue.min.js"></script>
 </head>
-
+{include file='api@homebtn' /}
 <body class="lampBox">
     <div id="app" class="box">
         <img class="bg" src="/static/api/images/lamp_bg.png">
         <div class="globalCont">
+            <div class="inCode flex" @click="toCode()">
+                抽奖码
+            </div>
+           
             <div class="lampCont">
                 <div class="flex_rse">
-                    <div class="lampItem">
-                        <img src="/static/api/images/享通灯.png" alt="">
-                        <div class="num flex {if condition='!$list["hengtong"]'} num_gray {/if}">
+                    <div class="lampItem" v-for="(item,key,index) in dlist" :key="index" v-if="index<2">
+                        <img :src="['/static/api/images/'+item.name+'.png']" :class="[item.num==0?'img_gray':'']">
+                        <div :class="['num flex',item.num==0?'num_gray':'']">
                             <div class="t">
-                                {$list['hengtong']}
+                                {{item.num}}
                             </div>
                         </div>
                         <div class="text">
-                            享通灯
+                            {{item.name}}
                         </div>
-                        <div class="barter flex {if condition='!$list["hengtong"]'} barter_gray {/if}">
-                             兑换
-                        </div>
-                    </div>
-                    <div class="lampItem">
-                        <img src="/static/api/images/安康灯.png" alt="">
-                        <div class="num flex {if condition='!$list["ankang"]'} num_gray {/if}">
-                            <div class="t">
-                                {$list['ankang']}
-                            </div>
-                        </div>
-                        <div class="text">
-                            安康灯
-                        </div>
-                        <div class="barter flex {if condition='!$list["ankang"]'} barter_gray {/if}">
+                        <div :class="['barter flex',item.num<3?'barter_gray':'']" @click="barter(key,item.num)">
                             兑换
-                       </div>
+                        </div>
                     </div>
                 </div>
                 <div class="flex_rsb">
-                    <div class="lampItem">
-                        <img src="/static/api/images/如意灯.png" alt="">
-                        <div class="num flex {if condition='!$list["wishful"]'} num_gray {/if}">
+                    <div class="lampItem" v-for="(item,key,index) in dlist" :key="index" v-if="index>1">
+                        <img :src="['/static/api/images/'+item.name+'.png']" :class="[item.num==0?'img_gray':'']">
+                        <div :class="['num flex',item.num==0?'num_gray':'']">
                             <div class="t">
-                                {$list['wishful']}
+                                {{item.num}}
                             </div>
                         </div>
                         <div class="text">
-                            如意灯
+                            {{item.name}}
                         </div>
-                        <div class="barter flex {if condition='!$list["wishful"]'} barter_gray {/if}">
+                        <div :class="['barter flex',item.num<3?'barter_gray':'']" @click="barter(key,item.num)">
                             兑换
-                       </div>
-                    </div>
-                    <div class="lampItem">
-                        <img src="/static/api/images/顺心灯.png" alt="">
-                        <div class="num flex {if condition='!$list["agreeable"]'} num_gray {/if}">
-                            <div class="t">
-                                {$list['agreeable']}
-                            </div>
                         </div>
-                        <div class="text">
-                            顺心灯
-                        </div>
-                        <div class="barter flex {if condition='!$list["agreeable"]'} barter_gray {/if}">
-                            兑换
-                       </div>
-                    </div>
-                    <div class="lampItem">
-                        <img src="/static/api/images/兴旺灯.png" alt="">
-                        <div class="num flex {if condition='!$list["flourishing"]'} num_gray {/if}">
-                            <div class="t">
-                                {$list['flourishing']}
-                            </div>
-                        </div>
-                        <div class="text">
-                            兴旺灯
-                        </div>
-                        <div class="barter flex {if condition='!$list["flourishing"]'} barter_gray {/if}">
-                            兑换
-                       </div>
                     </div>
                 </div>
                 <div class="flex_rsa btnBox">
-                    <div class="btn_join flex">
+                    <div class="btn btn_join flex" @click="joinLamp()">
                         合成
                     </div>
-                    <div class="btn_help flex">
+                    <div class="btn btn_help flex" @click="toHelp()">
                         说明
                     </div>
                 </div>
             </div>
         </div>
+        <div class="popup" v-if="popupStatus!=0">
+            <div class="popup_cont">
+                <img class="colse" @click="popupColse()" src="/static/api/images/popup_close.png">
+                <!-- 选灯 -->
+                <template v-if="popupStatus==4">
+                    <img class="bg" src="/static/api/images/popup_bg1.png">
+                    <div class="selLamp flex_rsb">
+                        <div :class="['selLampItem flex',selLamp==key?'on':'']" @click="LampChick(key)" v-for="(item,key,index) in dlist" :key="index" v-if="key!=onLamp">{{item.name}}</div>
+                    </div>
+                    <div class="popupCodeBtn" @click="barterSubmit"></div>
+                </template>
+                <!-- 未关注公众号 -->
+                <template v-if="popupStatus==1">
+                    <img class="bg" src="/static/api/images/popup_ewm.png">
+                </template>
+                <!-- 获取抽奖码 -->
+                <template v-if="popupStatus==2">
+                    <img class="bg" src="/static/api/images/popup_code.png">
+                    <div class="popupCode">
+                        {{code}}
+                    </div>
+                    <div class="popupCodeBtn" @clcik="popupColse"></div>
+                </template>
+                <template v-if="popupStatus==3">
+                    <img class="bg" src="/static/api/images/popup_code_tel.png">
+                    <div class="popupCode popupCode2">
+                        {{code}}
+                    </div>
+                    <div class="popupTel flex">
+                        <input type="number" v-model="tel" placeholder="请输入您的联系方式">
+                    </div>
+                    <div class="popupCodeBtn popupCodeBtn2" @clcik="telSubmit"></div>
+                </template>
+            </div>
+        </div>
+
     </div>
     <script src="/static/api/js/jquery.min.js"></script>
     <script src="/static/api/js/index.js"></script>
     <script>
         var app = new Vue({
             el: '#app',
-            data: {},
-            methods: {},
+            data: {
+                list: [],
+                popupStatus: '',
+                code: '',
+                tel:'',  //用户填写手机号
+                onLamp:'',   //兑换用灯
+                selLamp:'',  //被兑换灯
+                dlist: {
+                    'hengtong': {
+                        name: '享通灯',
+                        num: 0
+                    },
+                    'ankang': {
+                        name: '安康灯',
+                        num: 0
+                    },
+                    'wishful': {
+                        name: '如意灯',
+                        num: 0
+                    },
+                    'agreeable': {
+                        name: '顺心灯',
+                        num: 0
+                    },
+                    'flourishing': {
+                        name: '兴旺灯',
+                        num: 0
+                    }
+                },
+            },
+            created() {},
+            mounted() {
+                this.getLamp();
+            },
+            methods: {
+                getLamp() {
+                    let that = this;
+                    $.ajax({
+                        type: 'post',
+                        url: '{:url("/api/Index/getlampnum")}',
+                        success: function (data) {
+                            let list = data.list;
+                            for (let i in list) {
+                                // console.log(that.dlist[i]);
+                                that.dlist[i].num = list[i]
+                            }
+                        }
+                    });
+                },
+                popupColse() {
+                    this.popupStatus = 0;
+                },
+                toHelp() {
+                    let url = '{:url("index/rule")}';
+                    window.location.href = url;
+                },
+                toCode() {
+                    let url = '{:url("Collection/setexchange")}';
+                    window.location.href = url;
+                },
+                telSubmit(){
+                    let that=this;
+                    if(!that.tel){
+                        alert('请填写手机号哦~');
+                    }else{
+                        $.ajax({
+                        type: 'post',
+                        url: '{:url("/api/Collection/setmobile")}',
+                        data:{
+                            "mobile":that.tel
+                        },
+                        success: function (data) {
+                           if(data.code==1){
+                               that.popupStatus = 0;
+                               alert(data.msg);
+                           }else{
+                               alert(data.msg);
+                           }
+                        }
+                    }); 
+                    }
+                },
+                barter(name,num) {
+                   let that=this;
+                   if(num<3){
+                       return false;
+                   }
+                   that.onLamp=name;
+                   that.popupStatus=4;
+                },
+                barterSubmit(){
+                    let that=this;
+                    if(!that.selLamp){
+                        alert('请先选择要兑换的福灯哦~');
+                    }else{
+                        $.ajax({
+                        type: 'post',
+                        url: '{:url("Collection/swaplamp")}',
+                        data:{
+                            'swap':that.onLamp,
+                            'lamp':that.selLamp
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            if (data.code == 0) {
+                                alert(data.msg);
+                            } else if (data.code == 1) {
+                                that.popupStatus = 0;
+                                that.selLamp='';
+                                that.onLamp='';
+                                that.getLamp();
+                                alert(data.msg);
+                            }
+                        }
+                    });
+                    }
+                },
+                LampChick(key){
+                    this.selLamp=key;
+                },
+                joinLamp() {
+                    let that = this;
+                    $.ajax({
+                        type: 'post',
+                        url: '{:url("collection/synthesis")}',
+                        success: function (data) {
+                            console.log(data);
+                            if (data.code == 400) {
+                                that.popupStatus = 1;
+                            } else if (data.code == 0) {
+                                alert(data.msg);
+                            } else if (data.code == 1) {
+                                if (data.status == 1) {
+                                    that.popupStatus = 2;
+                                    that.code = data.card;
+                                } else if (data.status == 0) {
+                                    that.popupStatus = 3;
+                                    that.code = data.card;
+                                }
+                            }
+                        }
+                    });
+                }
+
+            },
         })
     </script>
 </body>

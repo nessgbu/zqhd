@@ -72,6 +72,15 @@ class Share extends Api
      */
     public function index()
     {
+        // 分享活动用户
+        $pid = input('param.id');
+        $userid = session('userid');
+        if ($pid && $userid) {
+            if ($pid != $userid) {
+                // 获取灯笼
+                $this->getlamp($userid,$pid);
+            }
+        }
         // 获取当前域名
         $name = $_SERVER['HTTP_HOST'];
         require_once "../vendor/wxJsSdk/jssdk.php";
@@ -80,27 +89,34 @@ class Share extends Api
         $signPackage = $jssdk->GetSignPackage();
 
         // 获取到当前uid
-        $uid = input('get.id');
+        $data = input('param.');
         $headimg = Db::name('users')
-            ->where(array('id'=>$uid))
+            ->where(array('id'=>$data['id']))
             ->find();
+        if ($pid == $userid) {
+            $btn = 0;
+        }else{
+            $btn = 1;
+        }
         //分享到朋友圈的标题
-        $shareTimelineTitle = "中秋集灯活动";   
+        $shareTimelineTitle = "中秋送福集灯";   
         //分享给好友的标题
-        $shareAppTitle = "中秋集灯活动";
+        $shareAppTitle = "中秋送福集灯";
         //分享给好友的简述              
-        $shareAppDesc = "参与送福集灯活动，定制索能达中秋福灯祝福卡通过微信分享，祝福卡每被一位朋友打开，送出祝福的您将随机获得一盏“福灯”，用于参加抽奖活动。";
+        $shareAppDesc = "您收到一份来自 索能达中国建筑与配电事业部 发来的中秋祝福！";
         //分享的图片地址
-        $baseimgurl = 'http://zqhd.jctmj.cn/static/api/images/formatItem1.png';
+        $baseimgurl = 'http://'.$name.'/static/api/images/formatItem'.$data['bg'].'.png';
         //分享的访问地址
-        $baseurl = 'http://zqhd.jctmj.cn/api/Share/index?id='.$uid;
+        $baseurl = url('api/Share/index','id='.$data['id'].'&bg='.$data['bg'].'&t='.$data['t'],'html',true);
 
         $this->assign('shareTimelineTitle',$shareTimelineTitle);
         $this->assign('shareAppTitle',$shareAppTitle);
         $this->assign('shareAppDesc',$shareAppDesc);
-        // $this->assign('baseimgurl',$baseimgurl);
-        // $this->assign('baseurl',$baseurl);
-        $this->assign('uid',$uid);
+        $this->assign('baseimgurl',$baseimgurl);
+        $this->assign('baseurl',$baseurl);
+        $this->assign('btn',$btn);
+        $this->assign('bg',(int)$data['bg']);
+        $this->assign('t',(int)$data['t']);
         $this->assign('name',$name);
         $this->assign('signPackage',$signPackage);
         $this->assign('headimg',$headimg['headimg']);
