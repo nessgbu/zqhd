@@ -59,13 +59,12 @@ class Base extends Controller
     
     public function test()
     {
-        $config = config('xcxconf');
-        $appid = $config['appid'];
-        $secret = $config['secret'];
-        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$secret";
-        dump($url);
-        $jsonRes = curlGet($url);
-        dump($jsonRes);
+        $cgi_bin_access_token = get_php_file("cgi_bin_access_token.php");
+        $access_token = get_php_file("access_token.php");
+        $jsapi_ticket = get_php_file("jsapi_ticket.php");
+        dump($cgi_bin_access_token);
+        dump($access_token);
+        dump($jsapi_ticket);
     }
 
 }

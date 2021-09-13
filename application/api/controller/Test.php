@@ -22,7 +22,7 @@ use think\Db;
  * @controller api\controller\Index
  * @group Base
  */
-class Index extends Base
+class Test extends Base
 {
     
 }
