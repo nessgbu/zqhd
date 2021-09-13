@@ -18,7 +18,7 @@
             <div class="inCode flex" @click="toCode()">
                 抽奖码
             </div>
-           
+
             <div class="lampCont">
                 <div class="flex_rse">
                     <div class="lampItem" v-for="(item,key,index) in dlist" :key="index" v-if="index<2">
@@ -61,43 +61,47 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="popup" v-if="popupStatus!=0">
-            <div class="popup_cont">
-                <img class="colse" @click="popupColse()" src="/static/api/images/popup_close.png">
-                <!-- 选灯 -->
-                <template v-if="popupStatus==4">
-                    <img class="bg" src="/static/api/images/popup_bg1.png">
-                    <div class="selLamp flex_rsb">
-                        <div :class="['selLampItem flex',selLamp==key?'on':'']" @click="LampChick(key)" v-for="(item,key,index) in dlist" :key="index" v-if="key!=onLamp">{{item.name}}</div>
+
+            <div class="popup" v-if="popupStatus!=0">
+                <div class="popup_contBox">
+                    <div class="popup_cont">
+                        <img class="colse" @click="popupColse()" src="/static/api/images/popup_close.png">
+                        <!-- 选灯 -->
+                        <template v-if="popupStatus==4">
+                            <img class="bg" src="/static/api/images/popup_bg1.png">
+                            <div class="selLamp flex_rsb">
+                                <div :class="['selLampItem flex',selLamp==key?'on':'']" @click="LampChick(key)"
+                                    v-for="(item,key,index) in dlist" :key="index" v-if="key!=onLamp">{{item.name}}
+                                </div>
+                            </div>
+                            <div class="popupCodeBtn" @click="barterSubmit"></div>
+                        </template>
+                        <!-- 未关注公众号 -->
+                        <template v-if="popupStatus==1">
+                            <img class="bg" src="/static/api/images/popup_ewm.png">
+                        </template>
+                        <!-- 获取抽奖码 -->
+                        <template v-if="popupStatus==2">
+                            <img class="bg" src="/static/api/images/popup_code.png">
+                            <div class="popupCode">
+                                {{code}}
+                            </div>
+                            <div class="popupCodeBtn" @click="popupColse(1)"></div>
+                        </template>
+                        <template v-if="popupStatus==3">
+                            <img class="bg" src="/static/api/images/popup_code_tel.png">
+                            <div class="popupCode popupCode2">
+                                {{code}}
+                            </div>
+                            <div class="popupTel flex">
+                                <input type="number" v-model="tel" min="0" placeholder="请输入您的联系方式">
+                            </div>
+                            <div class="popupCodeBtn popupCodeBtn2" @click="telSubmit()"></div>
+                        </template>
                     </div>
-                    <div class="popupCodeBtn" @click="barterSubmit"></div>
-                </template>
-                <!-- 未关注公众号 -->
-                <template v-if="popupStatus==1">
-                    <img class="bg" src="/static/api/images/popup_ewm.png">
-                </template>
-                <!-- 获取抽奖码 -->
-                <template v-if="popupStatus==2">
-                    <img class="bg" src="/static/api/images/popup_code.png">
-                    <div class="popupCode">
-                        {{code}}
-                    </div>
-                    <div class="popupCodeBtn" @clcik="popupColse"></div>
-                </template>
-                <template v-if="popupStatus==3">
-                    <img class="bg" src="/static/api/images/popup_code_tel.png">
-                    <div class="popupCode popupCode2">
-                        {{code}}
-                    </div>
-                    <div class="popupTel flex">
-                        <input type="number" v-model="tel" placeholder="请输入您的联系方式">
-                    </div>
-                    <div class="popupCodeBtn popupCodeBtn2" @clcik="telSubmit"></div>
-                </template>
+                </div>
             </div>
         </div>
-
     </div>
     <script src="/static/api/js/jquery.min.js"></script>
     <script src="/static/api/js/index.js"></script>
@@ -106,7 +110,7 @@
             el: '#app',
             data: {
                 list: [],
-                popupStatus: '',
+                popupStatus: 0,
                 code: '',
                 tel:'',  //用户填写手机号
                 onLamp:'',   //兑换用灯
@@ -153,8 +157,11 @@
                         }
                     });
                 },
-                popupColse() {
+                popupColse(i) {
                     this.popupStatus = 0;
+                    if(i==1){
+                        alert('领取成功')
+                    }
                 },
                 toHelp() {
                     let url = '{:url("index/rule")}';
@@ -177,6 +184,7 @@
                         },
                         success: function (data) {
                            if(data.code==1){
+                                that.getLamp();
                                that.popupStatus = 0;
                                alert(data.msg);
                            }else{
@@ -239,9 +247,12 @@
                                 if (data.status == 1) {
                                     that.popupStatus = 2;
                                     that.code = data.card;
+                                    that.getLamp();
                                 } else if (data.status == 0) {
                                     that.popupStatus = 3;
                                     that.code = data.card;
+                                    that.getLamp();
+
                                 }
                             }
                         }
