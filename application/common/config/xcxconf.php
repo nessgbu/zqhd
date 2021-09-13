@@ -8,7 +8,7 @@ array (
   'template_id' => 'xBeGlb8eI7rR62f_TNPedyx1QahyY2-akyqkt-YHGZA',
   'miniprogram_state' => 'developer',
   // 分享活动开始时间
-  'creatime' => '2021-09-10 11:00:00',
+  'creatime' => '2021-09-13 15:40:00',
   // 三兑一活动开始时间
   'updatime' => '2021-09-16 11:00:00',
   // 结束时间
