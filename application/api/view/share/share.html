@@ -32,10 +32,8 @@
                 </div>
             </div>
         </div>
-        <div class="popup" v-if="popupShow">
-            <div class="popup_contBox">
+        <div class="popup" v-if="popupShow" style="position:fixed; background-color: rgba(0, 0, 0, 0.8);backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
                 <img class="popupShare" src="/static/api/images/popup_share.png" @click="popupShow=false">
-            </div>
         </div>
     </div>
 
