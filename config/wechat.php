@@ -82,7 +82,9 @@ function wxGetUserInfo()
 
 function wxGetAccessTokenByCgiBin($appid,$secret)
 {
-	$data = json_decode(get_php_file("cgi_bin_access_token.php"));
+	if (file_exists('cgi_bin_access_token.php')) {
+		$data = json_decode(get_php_file("cgi_bin_access_token.php"));
+	}
 	if ($data && $data->expire_time > time()) {
 		return $data->access_token;
 	}else{
