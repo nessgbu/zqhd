@@ -45,7 +45,7 @@ class Api extends Base
         //分享给好友的简述              
         $shareAppDesc = "您收到一份来自 索能达中国建筑与配电事业部 发来的中秋祝福！";
         //分享的图片地址
-        $baseimgurl = 'https://'.$name.'/static/api/images/formatItem1.png';
+        $baseimgurl = 'http://zqhd.jctmj.cn/static/api/images/formatItem1.png';
         //分享的访问地址
         $baseurl = url('api/index/index','','html',true);
 
@@ -187,15 +187,5 @@ class Api extends Base
         }
     }
 
-    public function test()
-    {
-        $config = config('xcxconf');
-        $appid = $config['appid'];
-        $secret = $config['secret'];
-        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$secret";
-        dump($url);
-        $jsonRes = curlGet($url);
-        dump($jsonRes);
-    }
 
 }
