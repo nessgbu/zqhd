@@ -61,13 +61,27 @@
                     <div class="line line100"></div>
                     {/if}
                 </div>
-               
             </div>
             <div class="gradeRule" @click="toHelp()">
                 <img src="/static/api/images/grade_gz.png" alt="">
             </div>
-            <div class="gradeBtn flex" @click="toUrl(1)">
+            <div class="gradeBtn flex" @click="toUrl(1)" v-if="grade==0">
                 去集灯
+            </div>
+            <div class="gradeBtn flex" @click="popupStatus=1" v-else>
+                查看奖品详情
+            </div>
+        </div>
+        <div class="popup" v-if="popupStatus!=0">
+            <div class="popup_contBox">
+                <div class="popup_cont">
+                    <img class="colse" @click="popupColse()" src="/static/api/images/popup_close.png">
+                    <!-- 未关注公众号 -->
+                    <template v-if="popupStatus==1">
+                        <img class="bg" :src="['/static/api/images/grade_award'+grade+'.png']">
+                        <!-- <div class="popupCodeBtn popupCodeBtn2" style="top:10rem" @click="popupColse()"></div> -->
+                    </template>
+                </div>
             </div>
         </div>
     </div>
@@ -76,8 +90,18 @@
     <script>
         var app = new Vue({
             el: '#app',
-            data: {},
+            data: {
+                grade:0,
+                popupStatus:0
+            },
+            created: function () {
+                let grade = '{$grade}';
+                grade ? this.grade = grade : '';
+            },
             methods:{
+                popupColse() {
+                    this.popupStatus = 0;
+                },
                 toHelp(){
                     let url='{:url("index/rule")}';
                     window.location.href = url;
